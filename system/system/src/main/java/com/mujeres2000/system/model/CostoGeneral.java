@@ -9,10 +9,15 @@ public class CostoGeneral {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int costos_generales_ID;
+    @Column (name = "electricidad", length = 10 )
     private int electricidad;
+    @Column (name = "agua", length = 10 )
     private int agua;
+    @Column (name = "gas", length = 10 )
     private int gas;
+    @Column (name = "alquiler", length = 10 )
     private int alquiler;
+    @Column (name = "costo_general_total", length = 10 )
     private int costo_general_total;
 
     @ManyToOne

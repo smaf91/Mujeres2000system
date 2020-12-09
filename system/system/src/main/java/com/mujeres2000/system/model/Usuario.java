@@ -14,9 +14,11 @@ public class Usuario {
     private int usuario_ID;
 
     //   @Email(message = "Ingrese su dirección de correo electrónico") //valida que sea un mail
+    @Column (name = "email", length = 255 )
     private String email;
 
     //   @NotNull (message = "Inserte su contraseña")
+    @Column (name = "password", length = 255 )
     private String password;
 
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )

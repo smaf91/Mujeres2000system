@@ -12,13 +12,21 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int producto_ID;
     @NotNull (message = "Ingrese nombre de producto")
+    @Column (name = "producto_nombre", length = 255 )
     private String producto_nombre;
+    @Column (name = "producto_descripcion", length = 255 )
     private String producto_descripcion;
+    @Column (name = "costo_materia_prima", length = 10 )
     private int costo_materia_prima;
+    @Column (name = "envio", length = 10 )
     private int envio;
+    @Column (name = "rentabilidad", length = 10 )
     private int rentabilidad;
+    @Column (name = "pdvs", length = 10 )
     private int pdvs;
+    @Column (name = "fecha_producto")
     private Date fecha_producto;
+    @Column (name = "indicendia_de_cg", length = 10 )
     private int indicendia_de_cg;
     // cg se refiere a la variable costo_generales
     // como idea podria definirse un porcentaje sobre esa incidencia en los productos
