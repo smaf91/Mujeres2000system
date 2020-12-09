@@ -3,8 +3,6 @@ package com.mujeres2000.system.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Min;
 
 @Entity
 @Table(name = "usuario")

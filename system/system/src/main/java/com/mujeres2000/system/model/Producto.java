@@ -2,6 +2,7 @@ package com.mujeres2000.system.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "producto")
@@ -10,6 +11,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int producto_ID;
+    @NotNull (message = "Ingrese nombre de producto")
     private String producto_nombre;
     private String producto_descripcion;
     private int costo_materia_prima;
