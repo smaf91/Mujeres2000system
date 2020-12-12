@@ -102,10 +102,30 @@ Content-Type: application/json
 - Success: 200
 - Failure: 400
 
-### Borrar
-**Method:** `DELETE`
+### BUSCAR
 
-**URL:** `<url>:<port>/producto/borrar/{producto_ID}`
+**Method:** `GET`
+
+**URL:** `<url>:<port>/producto/{producto_ID}`
 
 **Responses:**
 - Success: 200
+- Failure: 404
+```
+{
+    "error": "Producto no existe"
+}
+```
+
+### Borrar
+**Method:** `DELETE`
+
+**URL:** `<url>:<port>/producto/{producto_ID}`
+
+**Responses:**
+- Success: 200
+- Failure: 404
+```
+{
+    "error": "Producto no existe"
+}
