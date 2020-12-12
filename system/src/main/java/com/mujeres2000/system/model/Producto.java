@@ -1,63 +1,62 @@
 package com.mujeres2000.system.model;
 
 import javax.persistence.*;
-import java.util.Date;
-//import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
-@Entity
+@Entity(name = "producto")
 @Table(name = "producto")
 
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int producto_ID;
-    //@NotNull (message = "Ingrese nombre de producto")
-    @Column (name = "producto_nombre", length = 255 )
+    @Column(name = "producto_id")
+    private int producto_id;
+    @NotBlank(message = "Ingrese nombre de producto")
+    @Column(name = "producto_nombre", length = 255)
     private String producto_nombre;
-    @Column (name = "producto_descripcion", length = 255 )
+    @Column(name = "producto_descripcion", length = 255)
     private String producto_descripcion;
-    @Column (name = "costo_materia_prima", length = 10 )
-    private int costo_materia_prima;
-    @Column (name = "envio", length = 10 )
-    private int envio;
-    @Column (name = "rentabilidad", length = 10 )
-    private int rentabilidad;
-    @Column (name = "pdvs", length = 10 )
-    private int pdvs;
-    @Column (name = "fecha_producto")
-    private Date fecha_producto;
-    @Column (name = "indicendia_de_cg", length = 10 )
-    private int indicendia_de_cg;
+    @Column(name = "costo_materia_prima", length = 10)
+    private float costo_materia_prima;
+    @Column(name = "envio", length = 10)
+    private float envio;
+    @Column(name = "rentabilidad", length = 10)
+    private float rentabilidad;
+    @Column(name = "pdvs", length = 10)
+    private float pdvs;
     // cg se refiere a la variable costo_generales
     // como idea podria definirse un porcentaje sobre esa incidencia en los productos
     // ya que por lo general se define como costos / cantidad de productos a producir
     // en este caso lo desconocemos.
-    private int costo_general_total;
+    private float costo_general_total;
     @ManyToOne
     @JoinColumn(name = "usuario_ID", referencedColumnName = "usuario_ID")
     private Usuario usuario;
 
     //CONSTRUCTOR
 
-    public Producto(int producto_ID, String producto_nombre, String producto_descripcion, int costo_materia_prima, int envio, int rentabilidad, int pdvs, Date fecha_producto, int indicendia_de_cg ) {
-        this.producto_ID = producto_ID;
+
+    public Producto(int producto_id, @NotBlank(message = "Ingrese nombre de producto") String producto_nombre, String producto_descripcion, float costo_materia_prima, float envio, float rentabilidad, float pdvs, float costo_general_total, Usuario usuario) {
+        this.producto_id = producto_id;
         this.producto_nombre = producto_nombre;
         this.producto_descripcion = producto_descripcion;
         this.costo_materia_prima = costo_materia_prima;
         this.envio = envio;
         this.rentabilidad = rentabilidad;
         this.pdvs = pdvs;
-        this.fecha_producto = fecha_producto;
-        this.indicendia_de_cg = indicendia_de_cg;
-        this.costo_general_total = costo_materia_prima;
+        this.costo_general_total = costo_general_total;
+        this.usuario = usuario;
     }
 
-    public int getProducto_ID() {
-        return producto_ID;
+    public Producto() {
     }
 
-    public void setProducto_ID(int producto_ID) {
-        this.producto_ID = producto_ID;
+    public int getProducto_id() {
+        return producto_id;
+    }
+
+    public void setProducto_id(int producto_id) {
+        this.producto_id = producto_id;
     }
 
     public String getProducto_nombre() {
@@ -76,59 +75,43 @@ public class Producto {
         this.producto_descripcion = producto_descripcion;
     }
 
-    public int getCosto_materia_prima() {
+    public float getCosto_materia_prima() {
         return costo_materia_prima;
     }
 
-    public void setCosto_materia_prima(int costo_materia_prima) {
+    public void setCosto_materia_prima(float costo_materia_prima) {
         this.costo_materia_prima = costo_materia_prima;
     }
 
-    public int getEnvio() {
+    public float getEnvio() {
         return envio;
     }
 
-    public void setEnvio(int envio) {
+    public void setEnvio(float envio) {
         this.envio = envio;
     }
 
-    public int getRentabilidad() {
+    public float getRentabilidad() {
         return rentabilidad;
     }
 
-    public void setRentabilidad(int rentabilidad) {
+    public void setRentabilidad(float rentabilidad) {
         this.rentabilidad = rentabilidad;
     }
 
-    public int getPdvs() {
+    public float getPdvs() {
         return pdvs;
     }
 
-    public void setPdvs(int pdvs) {
+    public void setPdvs(float pdvs) {
         this.pdvs = pdvs;
     }
 
-    public Date getFecha_producto() {
-        return fecha_producto;
-    }
-
-    public void setFecha_producto(Date fecha_producto) {
-        this.fecha_producto = fecha_producto;
-    }
-
-    public int getIndicendia_de_cg() {
-        return indicendia_de_cg;
-    }
-
-    public void setIndicendia_de_cg(int indicendia_de_cg) {
-        this.indicendia_de_cg = indicendia_de_cg;
-    }
-
-    public int getCosto_general_total() {
+    public float getCosto_general_total() {
         return costo_general_total;
     }
 
-    public void setCosto_general_total(int costo_general_total) {
+    public void setCosto_general_total(float costo_general_total) {
         this.costo_general_total = costo_general_total;
     }
 
@@ -140,3 +123,4 @@ public class Producto {
         this.usuario = usuario;
     }
 }
+
