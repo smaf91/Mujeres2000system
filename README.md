@@ -28,6 +28,21 @@ Content-Type: application/json
 **Responses:**
 - Success: 201
 - Failure: 400
+```
+{
+    "error": "Registro inválido, usuario ya registrado"
+}
+```
+```
+{
+    "error": "Usuario debe indicar el email"
+}
+```
+```
+{
+    "error": "Usuario debe indicar el password"
+}
+```
 
 ### Login
 
@@ -51,6 +66,12 @@ Content-Type: application/json
 
 **Responses:**
 - Success: 200
+- Failure: 401
+```
+{
+    "error": "Usuario no registrado"
+}
+```
 
 ## Producto
 

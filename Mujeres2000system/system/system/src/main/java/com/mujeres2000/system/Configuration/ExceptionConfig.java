@@ -2,6 +2,8 @@ package com.mujeres2000.system.Configuration;
 
 import com.mujeres2000.system.Exception.BadRequestException;
 import com.mujeres2000.system.Exception.NotFoundException;
+import com.mujeres2000.system.Exception.UnauthorizedException;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,12 +19,23 @@ public class ExceptionConfig {
     //para poder manejar las excepciones creadas, se hace un llamado a través de la anotación
     //de Exception Handler
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<?> notFoundException(Exception e){
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    public ResponseEntity<?> notFoundException(Exception e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(generarJsonResponse(e));
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<?> badRequestException(Exception  e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    public ResponseEntity<?> badRequestException(Exception  e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(generarJsonResponse(e));
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<?> unauthorizedException(Exception  e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(generarJsonResponse(e));
+    }
+
+    private String generarJsonResponse(Exception  e) {
+        JSONObject response = new JSONObject();
+        response.put("error", e.getMessage());
+        return response.toString();
     }
 }
