@@ -28,6 +28,10 @@ public class ProductoService {
     public void eliminarProducto (Producto producto){
         productoRepository.delete(producto);
     }
+ /*   //modificacion de un producto
+    public Producto modificarProducto(Producto producto){
+
+    }*/
 
 
     //lista de productos

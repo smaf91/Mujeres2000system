@@ -26,8 +26,8 @@ public class Producto {
     private int pdvs;
     @Column (name = "fecha_producto")
     private Date fecha_producto;
-    @Column (name = "indicendia_de_cg", length = 10 )
-    private int indicendia_de_cg;
+    @Column (name = "incidencia_de_cg", length = 10 )
+    private int incidencia_de_cg;
     // cg se refiere a la variable costo_generales
     // como idea podria definirse un porcentaje sobre esa incidencia en los productos
     // ya que por lo general se define como costos / cantidad de productos a producir
@@ -47,9 +47,11 @@ public class Producto {
         this.envio = envio;
         this.rentabilidad = rentabilidad;
         this.pdvs = pdvs;
-        this.fecha_producto = fecha_producto;
-        this.indicendia_de_cg = indicendia_de_cg;
+        this.incidencia_de_cg = indicendia_de_cg;
         this.costo_general_total = costo_materia_prima;
+    }
+
+    public Producto() {
     }
 
     public int getProducto_ID() {
@@ -116,12 +118,12 @@ public class Producto {
         this.fecha_producto = fecha_producto;
     }
 
-    public int getIndicendia_de_cg() {
-        return indicendia_de_cg;
+    public int getIncidencia_de_cg() {
+        return incidencia_de_cg;
     }
 
-    public void setIndicendia_de_cg(int indicendia_de_cg) {
-        this.indicendia_de_cg = indicendia_de_cg;
+    public void setIncidencia_de_cg(int indicendia_de_cg) {
+        this.incidencia_de_cg = indicendia_de_cg;
     }
 
     public int getCosto_general_total() {

@@ -1,6 +1,7 @@
 package com.mujeres2000.system.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "costo_general")
@@ -9,16 +10,12 @@ public class CostoGeneral {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int costos_generales_ID;
-    @Column (name = "electricidad", length = 10 )
-    private int electricidad;
-    @Column (name = "agua", length = 10 )
-    private int agua;
-    @Column (name = "gas", length = 10 )
-    private int gas;
-    @Column (name = "alquiler", length = 10 )
-    private int alquiler;
+    @Column (name = "categoria", length = 100 )
+    private String categoria;
     @Column (name = "costo_general_total", length = 10 )
     private int costo_general_total;
+    @Column (name = "fecha_costo_general" )
+    private Date fecha_costo_general;
 
     @ManyToOne
     @JoinColumn(name = "usuario_ID", referencedColumnName = "usuario_ID")
@@ -26,14 +23,17 @@ public class CostoGeneral {
 
     //CONSTRUCTOR
 
-    public CostoGeneral(int costos_generales_ID, int electricidad, int agua, int gas, int alquiler, int costo_general_total) {
+    public CostoGeneral(int costos_generales_ID, String categoria, int costo_general_total, Date fecha_costo_general, Usuario usuario) {
         this.costos_generales_ID = costos_generales_ID;
-        this.electricidad = electricidad;
-        this.agua = agua;
-        this.gas = gas;
-        this.alquiler = alquiler;
+        this.categoria = categoria;
         this.costo_general_total = costo_general_total;
+        this.fecha_costo_general = fecha_costo_general;
+        this.usuario = usuario;
     }
+
+    public CostoGeneral() {
+    }
+// GETTERS Y SETTERS
 
     public int getCostos_generales_ID() {
         return costos_generales_ID;
@@ -43,36 +43,12 @@ public class CostoGeneral {
         this.costos_generales_ID = costos_generales_ID;
     }
 
-    public int getElectricidad() {
-        return electricidad;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setElectricidad(int electricidad) {
-        this.electricidad = electricidad;
-    }
-
-    public int getAgua() {
-        return agua;
-    }
-
-    public void setAgua(int agua) {
-        this.agua = agua;
-    }
-
-    public int getGas() {
-        return gas;
-    }
-
-    public void setGas(int gas) {
-        this.gas = gas;
-    }
-
-    public int getAlquiler() {
-        return alquiler;
-    }
-
-    public void setAlquiler(int alquiler) {
-        this.alquiler = alquiler;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public int getCosto_general_total() {
@@ -81,6 +57,14 @@ public class CostoGeneral {
 
     public void setCosto_general_total(int costo_general_total) {
         this.costo_general_total = costo_general_total;
+    }
+
+    public Date getFecha_costo_general() {
+        return fecha_costo_general;
+    }
+
+    public void setFecha_costo_general(Date fecha_costo_general) {
+        this.fecha_costo_general = fecha_costo_general;
     }
 
     public Usuario getUsuario() {

@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.*;
 //import javax.validation.constraints.NotNull;
 
-@Entity
+@Entity(name = "usuario")
 @Table(name = "usuario")
 //Creacion de tabla de usuarios.
 
@@ -30,6 +30,9 @@ public class Usuario {
         this.usuario_ID = usuario_ID;
         this.email = email;
         this.password = password;
+    }
+
+    public Usuario() {
     }
 
     public int getUsuario_ID() {

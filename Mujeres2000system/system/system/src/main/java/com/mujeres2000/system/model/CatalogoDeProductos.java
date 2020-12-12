@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
-@Entity(name = "CATALOGO_DE_PRODCUTOS")
+@Entity(name = "CATALOGO_DE_PROCDUTOS")
 @Table(name = "catalogoDeProductos")
 
 public class CatalogoDeProductos {
@@ -18,7 +18,7 @@ public class CatalogoDeProductos {
     @JoinColumn(name = "usuario_ID", referencedColumnName = "usuario_ID")
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name = "producto_ID", referencedColumnName = "prodcuto_ID")
+    @JoinColumn(name = "producto_ID", referencedColumnName = "producto_ID")
     private Producto producto;
 
     // CONSTRUCTOR
@@ -30,7 +30,9 @@ public class CatalogoDeProductos {
         this.producto = producto;
     }
 
-    //GETTERS Y SETTERS
+    public CatalogoDeProductos() {
+    }
+//GETTERS Y SETTERS
 
 
     public int getCatalogo_producto_ID() {

@@ -26,44 +26,27 @@ public class UsuarioController {
     @PostMapping(path = "/registrar")
     //@Operation(summary = "Guarda nuevo usuario", description = "Guarda un nuevo usuario a la base de datos")
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
-        log.info("Sistema guarda nuevo usuario: " + usuario);
+        log.info("Sistema guarda nuevo usuario: " + usuario.getEmail());
         usuarioService.crearUsuario(usuario);
-        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/modificar")
-    //@Operation(summary = "Modifica usuario guardado", description = "Modifica usuario guardado en la base de datos")
-    public ResponseEntity<Usuario> modificarUsuario(@RequestBody Usuario usuario) {
-        log.info("Sistema actualiza usuario: " + usuario);
-        usuarioService.modificarUsuario(usuario);
-        return new ResponseEntity<>(usuario, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping(path = "/usuario/{id}")
-    //@Operation(summary = "Elimina usuario guardado", description = "Elimina usuario guardado en la base de datos")
-    public ResponseEntity<Usuario> eliminarUsuario(@PathVariable("id") Usuario usuario) {
-        log.info("Sistema elimina usuario: " + usuario);
-        usuarioService.eliminarUsuario(usuario.getUsuario_ID());
-        return new ResponseEntity<>(null, HttpStatus.OK);
-    }
-
-    @GetMapping(path = "/usuario/{id}")
-    //@Operation(summary = "Busca usuario guardado", description = "Busca usuario guardado en la base de datos")
-    public ResponseEntity<Usuario> buscarUsuario(@PathVariable("id") Integer id) {
-        log.info("Sistema busca usuario: " + id);
-        Optional<Usuario> usuario = usuarioService.obtenerPorId(id);
-        if (Optional.empty().equals(usuario)) {
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        } else {
-            Usuario usuarioBuscado = usuarioService.obtenerPorId(id).get();
-            return new ResponseEntity<Usuario>(usuarioBuscado, HttpStatus.OK);
+    @PostMapping(path = "/ingresar")
+    //@Operation(summary = "login del usuario", description = "ingreso del usuario ya registrado")
+    public ResponseEntity<Usuario> ingresoUsuario(@RequestBody Usuario usuario) {
+        log.info("Sistema permite ingreso del usuario: " + usuario.getEmail());
+        try {
+            usuarioService.ingresoUsuario(usuario);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e) {
+            JSONObject response = new JSONObject();
+            response.put("error", ponTuErrorAqui);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-    }
-/* A RESOLVER
-    @GetMapping(path = "/lista")
-    // @Operation(summary = "Lista de usuarios", description = "Obtiene lista de usuarios registrados")
-    public ResponseEntity<List<Usuario>> listar() {
-        List<Usuario> lista = usuarioService.BuscarTodosLosUsuarios(usuario);
-        return new ResponseEntity<>(lista, HttpStatus.OK);
-    }*/
+
+            }
+    /*JSONObject response = new JSONObject();
+response.put("error", ponTuErrorAqui);
+return new ResponseEntity<>(response, statusCode);*/
+
 }

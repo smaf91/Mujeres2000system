@@ -24,7 +24,7 @@ public class DetalleDeVenta {
     @JoinColumn(name = "usuario_ID", referencedColumnName = "usuario_ID")
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name = "producto_ID", referencedColumnName = "prodcuto_ID")
+    @JoinColumn(name = "producto_ID", referencedColumnName = "producto_ID")
     private Producto producto;
 
     //CONSTRUCTOR
@@ -39,8 +39,10 @@ public class DetalleDeVenta {
         this.producto = producto;
     }
 
+    public DetalleDeVenta() {
+    }
 
-    // GETTERS Y SETTERS
+// GETTERS Y SETTERS
 
     public int getVenta_ID() {
         return venta_ID;
