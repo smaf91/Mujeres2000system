@@ -69,25 +69,22 @@ Content-Type: application/json
 **Body:** 
 ```
 {
+  "producto_nombre": "<producto_nombre>",
+  "producto_descripcion": "<producto_descripcion>"
+  "costo_materia_prima": "<costo_materia_prima>",
+  "rentabilidad": "<rentabilidad>",
+  "envio": "<envio>"
 }
 ```
 
 **Responses:**
 - Success: 200
+- Failure: 400
 
 ### Borrar
 **Method:** `DELETE`
 
-**URL:** `<url>:<port>/producto/borrar`
+**URL:** `<url>:<port>/producto/borrar/{producto_ID}`
 
-**Headers:**
-```
-Accept: application/json
-Content-Type: application/json
-```
-
-**Body:** 
-```
-{
-}
-```
+**Responses:**
+- Success: 200
