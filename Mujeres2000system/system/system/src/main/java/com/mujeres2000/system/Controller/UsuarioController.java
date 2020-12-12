@@ -1,5 +1,6 @@
 package com.mujeres2000.system.Controller;
 
+import com.mujeres2000.system.Exception.NotFoundException;
 import com.mujeres2000.system.Service.UsuarioService;
 import com.mujeres2000.system.model.Usuario;
 import org.apache.commons.logging.Log;
@@ -38,7 +39,7 @@ public class UsuarioController {
         try {
             usuarioService.ingresoUsuario(usuario);
             return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e) {
+        }catch (NotFoundException e) {
             JSONObject response = new JSONObject();
             response.put("error", ponTuErrorAqui);
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
