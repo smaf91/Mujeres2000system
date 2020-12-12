@@ -1,14 +1,11 @@
 package com.mujeres2000.system.Service;
-
 import com.mujeres2000.system.Exception.BadRequestException;
+import com.mujeres2000.system.Exception.NotFoundException;
 import com.mujeres2000.system.Repository.ProductoRepository;
-import com.mujeres2000.system.Repository.UsuarioRepository;
 import com.mujeres2000.system.model.Producto;
-import com.mujeres2000.system.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Transactional
@@ -21,26 +18,26 @@ public class ProductoService {
 
     //Creación de un producto
     public Producto crearProducto(Producto producto){
-        // comprobar que el producto no exista ya en la base de datos falta
-        return productoRepository.save(producto);
-    }
-    //Eliminación de un producto
-    public void eliminarProducto (Producto producto){
-        productoRepository.delete(producto);
-    }
- /*   //modificacion de un producto
-    public Producto modificarProducto(Producto producto){
-
-    }*/
-
-
-    //lista de productos
-    public List<Producto> obtenerTodosLosProductos(){
-        List<Producto> listaDeProductos = productoRepository.findAll();
-        return listaDeProductos;
+        if(productoRepository.findByName(producto.getProducto_nombre()) != null){
+            throw new BadRequestException("Producto ya existente"); // manejo de excepcion hecha en la clase de exception config
+        } else {
+            producto.setPdvs((producto.getEnvio() + producto.getCosto_materia_prima()) * (1 + (producto.getRentabilidad()/100)));
+            return productoRepository.save(producto);
+        }
     }
 
+    public Producto buscarProducto(Integer producto_id) {
+        Producto productoEncontrado = productoRepository.findByProductId(producto_id);
+        if (productoEncontrado == null) {
+            throw new NotFoundException("Producto no existe"); // manejo de excepcion hecha en la clase de exception config
+        } else {
+            return productoEncontrado;
+        }
+    }
 
-
+    public void eliminarProducto(Integer producto_id) {
+        buscarProducto(producto_id);
+        productoRepository.deleteByProductId(producto_id);
+    }
 
 }
