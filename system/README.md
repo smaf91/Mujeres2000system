@@ -102,7 +102,7 @@ Content-Type: application/json
 - Success: 200
 - Failure: 400
 
-### BUSCAR
+### Obtener Producto
 
 **Method:** `GET`
 
@@ -129,3 +129,44 @@ Content-Type: application/json
 {
     "error": "Producto no existe"
 }
+```
+
+## Costo
+
+### Registrar Costo
+**Method:** `POST`
+
+**URL:** `<url>:<port>/costo/registrar`
+
+**Body:** 
+```
+{
+    "categoria" : "renta",
+    "costo": 30.0
+}
+```
+
+**Responses:**
+- Success: 200
+
+### Listar Costos
+**Method:** `GET`
+
+**URL:** `<url>:<port>/costo`
+
+**Responses:**
+- Success: 200
+```
+[
+    {
+        "costos_generales_ID": 1,
+        "categoria": "elec",
+        "costo": 30.0
+    },
+    {
+        "costos_generales_ID": 2,
+        "categoria": "renta",
+        "costo": 30.0
+    }
+]
+```

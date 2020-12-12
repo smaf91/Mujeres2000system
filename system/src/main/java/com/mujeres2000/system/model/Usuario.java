@@ -1,6 +1,6 @@
 package com.mujeres2000.system.model;
-import java.util.List;
 
+import java.util.List;
 import javax.persistence.*;
 
 @Entity(name = "usuario")
@@ -9,7 +9,8 @@ import javax.persistence.*;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int usuario_ID;
+    @Column (name = "usuario_id")
+    private Integer usuario_id;
 
     //   @Email(message = "Ingrese su dirección de correo electrónico") //valida que sea un mail
     @Column (name = "email", length = 255 )
@@ -22,10 +23,13 @@ public class Usuario {
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<Producto> producto;
 
+    @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    private List<Costo> costo;
+
     //CONSTRUCTOR
 
-    public Usuario(int usuario_ID, String email, String password) {
-        this.usuario_ID = usuario_ID;
+    public Usuario(Integer usuario_id, String email, String password) {
+        this.usuario_id = usuario_id;
         this.email = email;
         this.password = password;
     }
@@ -33,12 +37,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public int getUsuario_ID() {
-        return usuario_ID;
+    public Integer getUsuario_id() {
+        return usuario_id;
     }
 
-    public void setUsuario_ID(int usuario_ID) {
-        this.usuario_ID = usuario_ID;
+    public void setUsuario_id(Integer usuario_id) {
+        this.usuario_id = usuario_id;
     }
 
     public String getEmail() {

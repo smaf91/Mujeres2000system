@@ -48,9 +48,17 @@ public class UsuarioService {
         //comprobación de que el usuario no tengo ya un mail registrado en el sistema
         Usuario usuarioGuardado = usuarioRepository.findByEmail(usuario.getEmail());
         if (usuarioGuardado != null && usuarioGuardado.getEmail().equals(usuario.getEmail()) && usuarioGuardado.getPassword().equals(usuario.getPassword())) {
-            return usuario;
+            return usuarioGuardado;
         } else {
             throw new UnauthorizedException("Usuario no registrado"); // manejo de excepcion hecha en la clase de exception config
         }
+    }
+
+    public Usuario obtenerUsuario(Integer usuarioId) {
+        Usuario usuarioGuardado = usuarioRepository.findByUsuarioId(usuarioId);
+        if (usuarioGuardado == null) {
+            throw new BadRequestException("Usuario no existe"); // manejo de excepcion hecha en la clase de exception config
+        }
+        return usuarioGuardado;
     }
 }

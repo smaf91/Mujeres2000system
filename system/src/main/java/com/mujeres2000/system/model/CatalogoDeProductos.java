@@ -8,19 +8,19 @@ import javax.persistence.*;
 public class CatalogoDeProductos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int catalogo_producto_ID;
+    private Integer catalogo_producto_ID;
     @Column(name = "stock")
     private int stock;
     @ManyToOne
-    @JoinColumn(name = "usuario_ID", referencedColumnName = "usuario_ID")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
     @ManyToOne
-    @JoinColumn(name = "producto_ID", referencedColumnName = "producto_ID")
+    @JoinColumn(name = "producto_id", referencedColumnName = "producto_id")
     private Producto producto;
 
     // CONSTRUCTOR
 
-    public CatalogoDeProductos(int catalogo_producto_ID, int stock, Usuario usuario, Producto producto) {
+    public CatalogoDeProductos(Integer catalogo_producto_ID, int stock, Usuario usuario, Producto producto) {
         this.catalogo_producto_ID = catalogo_producto_ID;
         this.stock = stock;
         this.usuario = usuario;
@@ -32,11 +32,11 @@ public class CatalogoDeProductos {
 
     //GETTERS Y SETTERS
 
-    public int getCatalogo_producto_ID() {
+    public Integer getCatalogo_producto_ID() {
         return catalogo_producto_ID;
     }
 
-    public void setCatalogo_producto_ID(int catalogo_producto_ID) {
+    public void setCatalogo_producto_ID(Integer catalogo_producto_ID) {
         this.catalogo_producto_ID = catalogo_producto_ID;
     }
 

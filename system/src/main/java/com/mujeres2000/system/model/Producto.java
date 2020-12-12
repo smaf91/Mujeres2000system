@@ -10,7 +10,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "producto_id")
-    private int producto_id;
+    private Integer producto_id;
     @NotBlank(message = "Ingrese nombre de producto")
     @Column(name = "producto_nombre", length = 255)
     private String producto_nombre;
@@ -30,13 +30,13 @@ public class Producto {
     // en este caso lo desconocemos.
     private float costo_general_total;
     @ManyToOne
-    @JoinColumn(name = "usuario_ID", referencedColumnName = "usuario_ID")
+    @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
     private Usuario usuario;
 
     //CONSTRUCTOR
 
 
-    public Producto(int producto_id, @NotBlank(message = "Ingrese nombre de producto") String producto_nombre, String producto_descripcion, float costo_materia_prima, float envio, float rentabilidad, float pdvs, float costo_general_total, Usuario usuario) {
+    public Producto(Integer producto_id, @NotBlank(message = "Ingrese nombre de producto") String producto_nombre, String producto_descripcion, float costo_materia_prima, float envio, float rentabilidad, float pdvs, float costo_general_total, Usuario usuario) {
         this.producto_id = producto_id;
         this.producto_nombre = producto_nombre;
         this.producto_descripcion = producto_descripcion;
@@ -51,11 +51,11 @@ public class Producto {
     public Producto() {
     }
 
-    public int getProducto_id() {
+    public Integer getProducto_id() {
         return producto_id;
     }
 
-    public void setProducto_id(int producto_id) {
+    public void setProducto_id(Integer producto_id) {
         this.producto_id = producto_id;
     }
 

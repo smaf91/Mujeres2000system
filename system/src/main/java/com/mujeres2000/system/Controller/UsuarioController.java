@@ -1,7 +1,5 @@
 package com.mujeres2000.system.Controller;
 
-import com.mujeres2000.system.Exception.BadRequestException;
-import com.mujeres2000.system.Exception.NotFoundException;
 import com.mujeres2000.system.Service.UsuarioService;
 import com.mujeres2000.system.model.Usuario;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(path = "/usuario")
@@ -31,9 +31,10 @@ public class UsuarioController {
 
     @PostMapping(path = "/ingresar")
     @Operation(summary = "login del usuario", description = "ingreso del usuario ya registrado")
-    public ResponseEntity<String> ingresoUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<String> ingresoUsuario(@RequestBody Usuario usuario, HttpServletRequest request) {
         log.info("Llamada a /ingresar con usuario: " + usuario.getEmail());
-        usuarioService.ingresoUsuario(usuario);
+        usuario = usuarioService.ingresoUsuario(usuario);
+        request.getSession().setAttribute("USUARIO_ID", usuario.getUsuario_id());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
