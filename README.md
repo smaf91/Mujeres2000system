@@ -91,7 +91,7 @@ Content-Type: application/json
 ```
 {
   "producto_nombre": "<producto_nombre>",
-  "producto_descripcion": "<producto_descripcion>"
+  "producto_descripcion": "<producto_descripcion>",
   "costo_materia_prima": "<costo_materia_prima>",
   "rentabilidad": "<rentabilidad>",
   "envio": "<envio>"
@@ -110,11 +110,55 @@ Content-Type: application/json
 
 **Responses:**
 - Success: 200
+```
+{
+    "producto_id": 2,
+    "producto_nombre": "producto2",
+    "producto_descripcion": "producto1",
+    "costo_materia_prima": 10.0,
+    "envio": 5.0,
+    "rentabilidad": 10.0,
+    "pdvs": 16.5,
+    "costo_general_total": 0.0
+}
+```
 - Failure: 404
 ```
 {
     "error": "Producto no existe"
 }
+```
+
+### Obtener Lista Producto
+**Method:** `GET`
+
+**URL:** `<url>:<port>/producto`
+
+**Responses:**
+- Success: 200
+```
+[
+    {
+        "producto_id": 2,
+        "producto_nombre": "producto2",
+        "producto_descripcion": "producto1",
+        "costo_materia_prima": 10.0,
+        "envio": 5.0,
+        "rentabilidad": 10.0,
+        "pdvs": 16.5,
+        "costo_general_total": 0.0
+    },
+    {
+        "producto_id": 3,
+        "producto_nombre": "producto1",
+        "producto_descripcion": "producto1",
+        "costo_materia_prima": 10.0,
+        "envio": 5.0,
+        "rentabilidad": 10.0,
+        "pdvs": 16.5,
+        "costo_general_total": 0.0
+    }
+]
 ```
 
 ### Borrar

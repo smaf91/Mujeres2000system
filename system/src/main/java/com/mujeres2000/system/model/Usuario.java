@@ -23,9 +23,11 @@ public class Usuario {
     private String password;
 
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @JsonIgnore
     private List<Producto> producto;
 
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @JsonIgnore
     private List<Costo> costo;
     @JsonIgnore
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )

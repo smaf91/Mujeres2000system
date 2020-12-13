@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "f3428d7c-b97e-4675-83ac-d65b272510e8",
+		"name": "Mujeres2000",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "registrar_201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91531528-5e22-4dfd-b448-36062abc8876",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"steph@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"registrar"
+					]
+				},
+				"description": "Registra usuario nuevo en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "registrar_400_ya_registrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e67385af-1796-4873-bc47-dd6cccba8e5f",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"missri@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"registrar"
+					]
+				},
+				"description": "Registra usuario nuevo en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "registrar_400_no_email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "010e3b49-ba13-46c6-b5a6-a8d127a38ef8",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"registrar"
+					]
+				},
+				"description": "Registra usuario nuevo en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "registrar_400_no_password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35b33fbc-0fd4-4787-8788-17b4b272a21d",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"missri@gmail.com\",\r\n    \"password\": \"\"\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"registrar"
+					]
+				},
+				"description": "Registra usuario nuevo en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "login_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fea95bf3-7094-46d6-81d4-566005552c40",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"steph@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/ingresar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"ingresar"
+					]
+				},
+				"description": "Ingreso de usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "login_401",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7e6b9bb0-03df-439b-a2cb-66668bc4a974",
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"blah@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/ingresar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"ingresar"
+					]
+				},
+				"description": "Ingreso de usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "crear_producto_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4163e2d5-cf36-4b88-8ecd-dba4f1f28c5b",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"producto_nombre\": \"producto1\",\r\n  \"producto_descripcion\": \"producto1\",\r\n  \"costo_materia_prima\": \"10\",\r\n  \"rentabilidad\": \"10\",\r\n  \"envio\": \"5\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/producto/crear",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"producto",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtener_producto_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "185410c9-fd36-4b93-b29e-48c4029ae0c8",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/producto/2",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"producto",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar_productos_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "314c4818-9d40-48e9-99c0-219058901ebd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/producto",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"producto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrar_costo_201",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41df0966-dc20-4d28-a19e-f1680ff9aa41",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoria\" : \"renta\",\r\n    \"costo\": 30.0\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/costo/registrar",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"costo",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar_costo_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8594b23f-fa09-42f3-9833-cd3d55d5ad85",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/costo",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"costo"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
