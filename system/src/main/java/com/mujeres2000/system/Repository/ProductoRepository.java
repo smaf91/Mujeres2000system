@@ -6,20 +6,24 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto,Integer> {
 
-    @Query("SELECT u FROM producto u WHERE u.producto_nombre =?1")
-    Producto findByName(String producto_nombre);
+    @Query("SELECT p FROM producto p WHERE p.producto_nombre = ?1 AND p.usuario.usuario_id = ?2")
+    Producto findByNameAndUsuarioId(String producto_nombre, Integer usuarioId);
 
-    @Query("SELECT u FROM producto u WHERE u.producto_id =?1")
-    Producto findByProductId(Integer id);
+    @Query("SELECT p FROM producto p WHERE p.producto_id = ?1 AND p.usuario.usuario_id = ?2")
+    Producto findByProductIdAndUsuarioId(Integer id, Integer usuarioId);
+
+    @Query("SELECT p FROM producto p WHERE p.usuario.usuario_id = ?1")
+    List<Producto> findAllProductsByUsuarioId(Integer usuarioId);
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM producto u WHERE u.producto_id =?1")
+    @Query("DELETE FROM producto p WHERE p.producto_id = ?1")
     void deleteByProductId(Integer id);
 
 }

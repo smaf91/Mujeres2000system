@@ -1,5 +1,7 @@
 package com.mujeres2000.system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 import javax.persistence.*;
 
@@ -21,9 +23,11 @@ public class Usuario {
     private String password;
 
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @JsonIgnore
     private List<Producto> producto;
 
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @JsonIgnore
     private List<Costo> costo;
 
     //CONSTRUCTOR

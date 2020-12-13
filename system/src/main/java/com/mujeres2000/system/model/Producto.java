@@ -1,5 +1,7 @@
 package com.mujeres2000.system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -31,6 +33,7 @@ public class Producto {
     private float costo_general_total;
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
+    @JsonIgnore
     private Usuario usuario;
 
     //CONSTRUCTOR
