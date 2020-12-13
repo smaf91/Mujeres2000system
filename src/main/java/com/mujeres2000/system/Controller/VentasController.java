@@ -1,5 +1,6 @@
 package com.mujeres2000.system.Controller;
 
+import com.mujeres2000.system.Exception.UnauthorizedException;
 import com.mujeres2000.system.Service.DetalleDeVentasService;
 import com.mujeres2000.system.model.DetalleDeVentas;
 import com.mujeres2000.system.model.Producto;
@@ -29,6 +30,9 @@ public class VentasController {
     public ResponseEntity<DetalleDeVentas> registrarVenta(@RequestBody DetalleDeVentas detalleDeVentas, HttpServletRequest request ){
         log.info("Sistema registra venta: " + detalleDeVentas.getVenta_id());
         Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        if (usuarioId == null) {
+            throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
+        }
         detalleDeVentasService.registrarVenta(detalleDeVentas, usuarioId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -36,6 +40,9 @@ public class VentasController {
     //@Operation(summary = "busca un producto ya guardado", description = "busca un producto ya guardado")
     public ResponseEntity<List<DetalleDeVentas>> listarVentas(HttpServletRequest request) {
         Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        if (usuarioId == null) {
+            throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
+        }
         log.info("Llamada a obtener listado de productos usuario id: " + usuarioId);
         List<DetalleDeVentas> ventas = detalleDeVentasService.listarVentas(usuarioId);
         return new ResponseEntity<>(ventas, HttpStatus.OK);
@@ -43,9 +50,13 @@ public class VentasController {
 
     @GetMapping(path = "/{venta_id}")
     @Operation(summary = "Busca venta registrada", description = "Busca venta registrada")
-    public ResponseEntity<DetalleDeVentas> buscarVenta (@PathVariable Integer venta_id) {
+    public ResponseEntity<DetalleDeVentas> buscarVenta (@PathVariable Integer venta_id, HttpServletRequest request) {
+        Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        if (usuarioId == null) {
+            throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
+        }
         log.info("Sistema busca venta: " + venta_id);
-        DetalleDeVentas ventaEncontrada = detalleDeVentasService.buscarVenta(venta_id);
+        DetalleDeVentas ventaEncontrada = detalleDeVentasService.buscarVenta(venta_id, usuarioId);
         return new ResponseEntity<>(ventaEncontrada, HttpStatus.OK);
     }
 }

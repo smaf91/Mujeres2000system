@@ -13,8 +13,8 @@ public interface DetalleDeVentasRepository extends JpaRepository <DetalleDeVenta
     @Query("SELECT c FROM detalle_de_ventas c WHERE c.usuario.usuario_id = ?1")
     List<DetalleDeVentas> findAllByUsuarioId(Integer usuarioId);
 
-    @Query("SELECT u FROM detalle_de_ventas u WHERE u.venta_id =?1")
-    DetalleDeVentas findByPVentaId(Integer id);
+    @Query("SELECT u FROM detalle_de_ventas u WHERE u.venta_id =?1 AND u.usuario.usuario_id = ?2")
+    DetalleDeVentas findByVentaIdAndUsuarioId(Integer id, Integer usuario_id);
 
     @Transactional
     @Modifying
