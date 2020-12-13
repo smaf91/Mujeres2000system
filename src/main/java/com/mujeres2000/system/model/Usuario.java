@@ -29,6 +29,9 @@ public class Usuario {
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     @JsonIgnore
     private List<Costo> costo;
+    @JsonIgnore
+    @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    private List<DetalleDeVentas> ventas;
 
     //CONSTRUCTOR
 
