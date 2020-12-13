@@ -1,5 +1,7 @@
 package com.mujeres2000.system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 import javax.persistence.*;
 
@@ -25,6 +27,9 @@ public class Usuario {
 
     @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<Costo> costo;
+    @JsonIgnore
+    @OneToMany (mappedBy="usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    private List<DetalleDeVentas> ventas;
 
     //CONSTRUCTOR
 

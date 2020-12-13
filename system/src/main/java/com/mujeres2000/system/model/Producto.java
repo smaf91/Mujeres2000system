@@ -35,7 +35,6 @@ public class Producto {
 
     //CONSTRUCTOR
 
-
     public Producto(Integer producto_id, @NotBlank(message = "Ingrese nombre de producto") String producto_nombre, String producto_descripcion, float costo_materia_prima, float envio, float rentabilidad, float pdvs, float costo_general_total, Usuario usuario) {
         this.producto_id = producto_id;
         this.producto_nombre = producto_nombre;
