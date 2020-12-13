@@ -28,8 +28,8 @@ public class DetalleDeVentasService {
         return detalleDeVentasRepository.findAllByUsuarioId(usuario_id);
     }
 
-    public DetalleDeVentas buscarVenta (Integer venta_id) {
-        DetalleDeVentas ventaEncontrada = detalleDeVentasRepository.findByPVentaId(venta_id);
+    public DetalleDeVentas buscarVenta (Integer venta_id, Integer usuario_id) {
+        DetalleDeVentas ventaEncontrada = detalleDeVentasRepository.findByVentaIdAndUsuarioId(venta_id, usuario_id);
         if (ventaEncontrada == null) {
             throw new NotFoundException("Venta no existe"); // manejo de excepcion hecha en la clase de exception config
         } else {
