@@ -372,7 +372,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"producto_nombre\": \"producto1\",\r\n  \"producto_descripcion\": \"producto1\",\r\n  \"costo_materia_prima\": \"10\",\r\n  \"rentabilidad\": \"10\",\r\n  \"envio\": \"5\"\r\n}"
+					"raw": "{\r\n  \"producto_nombre\": \"producto1\",\r\n  \"producto_descripcion\": \"producto2\",\r\n  \"costo_materia_prima\": \"10\",\r\n  \"rentabilidad\": \"10\",\r\n  \"envio\": \"5\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/producto/crear",
@@ -577,6 +577,102 @@
 					],
 					"path": [
 						"costo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear_venta_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "41052415-9272-4889-9026-5855be951f4f",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"canal_de_venta\" : \"whatsapp\",\n    \"cantidad\": 1,\n    \"precio_de_venta\" : 15,\n    \"fecha_de_venta\": \"2020-05-05\"\n} "
+				},
+				"url": {
+					"raw": "{{url}}/ventas/registrar",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"ventas",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar_venta_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "97992474-983d-48b7-8ad8-f3b5d10a6ddb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/ventas",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"ventas"
 					]
 				}
 			},

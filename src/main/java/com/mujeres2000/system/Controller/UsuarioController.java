@@ -34,7 +34,8 @@ public class UsuarioController {
     public ResponseEntity<String> ingresoUsuario(@RequestBody Usuario usuario, HttpServletRequest request) {
         log.info("Llamada a /ingresar con usuario: " + usuario.getEmail());
         usuario = usuarioService.ingresoUsuario(usuario);
-        request.getSession().setAttribute("USUARIO_ID", usuario.getUsuario_id());
+        Integer usuarioId = usuario.getUsuario_id();
+        request.getSession().setAttribute("USUARIO_ID", usuarioId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
