@@ -26,7 +26,8 @@ public class CostoController {
     @Operation(summary = "Guarda nuevo costo", description = "Guarda un nuevo costo a la base de datos")
     public ResponseEntity<String> crearCosto(@RequestBody Costo costo, HttpServletRequest request) {
         log.info("Llamada a /registrar con costo: ");
-        Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+//        Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        Integer usuarioId = 1;
         if (usuarioId == null) {
             throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
         }
@@ -38,7 +39,8 @@ public class CostoController {
     @Operation(summary = "Listar costos", description = "Listar costos")
     public ResponseEntity<List<Costo>> listarCostos(HttpServletRequest request) {
         log.info("Llamada a listar costos: ");
-        Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+//        Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        Integer usuarioId = 1;
         if (usuarioId == null) {
             throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
         }
