@@ -35,6 +35,7 @@ public class ProductoService {
     }
 
     public Producto buscarProducto(Integer producto_id, Integer usuarioId) {
+        usuarioService.obtenerUsuario(usuarioId);
         Producto productoEncontrado = productoRepository.findByProductIdAndUsuarioId(producto_id, usuarioId);
         if (productoEncontrado == null) {
             throw new NotFoundException("Producto no existe"); // manejo de excepcion hecha en la clase de exception config
@@ -44,11 +45,13 @@ public class ProductoService {
     }
 
     public List<Producto> listarProductos(Integer usuarioId) {
+        usuarioService.obtenerUsuario(usuarioId);
         List<Producto> productos = productoRepository.findAllProductsByUsuarioId(usuarioId);
         return productos;
     }
 
     public void eliminarProducto(Integer producto_id, Integer usuarioId) {
+        usuarioService.obtenerUsuario(usuarioId);
         buscarProducto(producto_id, usuarioId);
         productoRepository.deleteByProductId(producto_id);
     }

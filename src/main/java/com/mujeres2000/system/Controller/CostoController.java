@@ -1,5 +1,6 @@
 package com.mujeres2000.system.Controller;
 
+import com.mujeres2000.system.Exception.UnauthorizedException;
 import com.mujeres2000.system.Service.CostoService;
 import com.mujeres2000.system.model.Costo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,6 +27,9 @@ public class CostoController {
     public ResponseEntity<String> crearCosto(@RequestBody Costo costo, HttpServletRequest request) {
         log.info("Llamada a /registrar con costo: ");
         Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        if (usuarioId == null) {
+            throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
+        }
         costoService.crearCosto(costo, usuarioId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -35,6 +39,9 @@ public class CostoController {
     public ResponseEntity<List<Costo>> listarCostos(HttpServletRequest request) {
         log.info("Llamada a listar costos: ");
         Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        if (usuarioId == null) {
+            throw new UnauthorizedException("Sesion no detectada, favor inicie sesion");
+        }
         List<Costo> costos = costoService.listarCostos(usuarioId);
         return new ResponseEntity<>(costos, HttpStatus.OK);
     }

@@ -54,6 +54,23 @@ public class UsuarioService {
         }
     }
 
+    public Usuario logoutUsuario(Usuario usuario) {
+        if (usuario.getEmail() == null || usuario.getEmail().isEmpty()) {
+            throw new BadRequestException("Usuario debe indicar el email");
+        }
+
+        if (usuario.getPassword() == null || usuario.getPassword().isEmpty()) {
+            throw new BadRequestException("Usuario debe indicar el password");
+        }
+        //comprobación de que el usuario no tengo ya un mail registrado en el sistema
+        Usuario usuarioGuardado = usuarioRepository.findByEmail(usuario.getEmail());
+        if (usuarioGuardado != null && usuarioGuardado.getEmail().equals(usuario.getEmail()) && usuarioGuardado.getPassword().equals(usuario.getPassword())) {
+            return usuarioGuardado;
+        } else {
+            throw new UnauthorizedException("Usuario no registrado"); // manejo de excepcion hecha en la clase de exception config
+        }
+    }
+
     public Usuario obtenerUsuario(Integer usuarioId) {
         Usuario usuarioGuardado = usuarioRepository.findByUsuarioId(usuarioId);
         if (usuarioGuardado == null) {

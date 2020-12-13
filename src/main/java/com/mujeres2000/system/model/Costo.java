@@ -3,6 +3,7 @@ package com.mujeres2000.system.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity(name = "costo_general")
 @Table(name = "costo_general")
@@ -17,6 +18,9 @@ public class Costo {
 
     @Column (name = "costo", length = 10 )
     private Double costo;
+
+    @Column (name = "fecha", length = 10 )
+    private Date fecha;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", referencedColumnName = "usuario_id")
@@ -65,6 +69,14 @@ public class Costo {
 
     public void setCosto(Double costo) {
         this.costo = costo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }
 

@@ -37,4 +37,13 @@ public class UsuarioController {
         request.getSession().setAttribute("USUARIO_ID", usuario.getUsuario_id());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PostMapping(path = "/logout")
+    @Operation(summary = "logout del usuario", description = "logout del usuario ya registrado")
+    public ResponseEntity<String> salidaUsuario(HttpServletRequest request) {
+        Integer usuarioId = (Integer) request.getSession().getAttribute("USUARIO_ID");
+        log.info("Llamada a /logout con usuario: " + usuarioId);
+        request.getSession().invalidate();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

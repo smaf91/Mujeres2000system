@@ -40,11 +40,10 @@
 					"raw": "{\r\n    \"email\" : \"steph@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"raw": "{{url}}/usuario/registrar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"usuario",
 						"registrar"
@@ -89,11 +88,10 @@
 					"raw": "{\r\n    \"email\" : \"missri@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"raw": "{{url}}/usuario/registrar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"usuario",
 						"registrar"
@@ -138,11 +136,10 @@
 					"raw": "{\r\n    \"email\" : \"\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"raw": "{{url}}/usuario/registrar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"usuario",
 						"registrar"
@@ -187,11 +184,10 @@
 					"raw": "{\r\n    \"email\" : \"missri@gmail.com\",\r\n    \"password\": \"\"\r\n}\r\n\r\n"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/usuario/registrar",
+					"raw": "{{url}}/usuario/registrar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"usuario",
 						"registrar"
@@ -236,11 +232,10 @@
 					"raw": "{\r\n    \"email\" : \"steph@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/usuario/ingresar",
+					"raw": "{{url}}/usuario/ingresar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"usuario",
 						"ingresar"
@@ -285,17 +280,63 @@
 					"raw": "{\r\n    \"email\" : \"blah@gmail.com\",\r\n    \"password\": \"mujeres2000\"\r\n}\r\n\r\n"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/usuario/ingresar",
+					"raw": "{{url}}/usuario/ingresar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"usuario",
 						"ingresar"
 					]
 				},
 				"description": "Ingreso de usuario"
+			},
+			"response": []
+		},
+		{
+			"name": "logout_200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e5251a01-c8d6-4c76-bb9b-2f640374fb54",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/usuario/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"usuario",
+						"logout"
+					]
+				}
 			},
 			"response": []
 		},
@@ -334,11 +375,10 @@
 					"raw": "{\r\n  \"producto_nombre\": \"producto1\",\r\n  \"producto_descripcion\": \"producto1\",\r\n  \"costo_materia_prima\": \"10\",\r\n  \"rentabilidad\": \"10\",\r\n  \"envio\": \"5\"\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/producto/crear",
+					"raw": "{{url}}/producto/crear",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"producto",
 						"crear"
@@ -385,14 +425,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/producto/2",
+					"raw": "{{url}}/producto/1",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"producto",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -436,11 +475,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/producto",
+					"raw": "{{url}}/producto",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"producto"
 					]
@@ -480,14 +518,13 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"categoria\" : \"renta\",\r\n    \"costo\": 30.0\r\n}"
+					"raw": "{\r\n    \"categoria\" : \"hilo\",\r\n    \"costo\": 5.0,\r\n    \"fecha\": \"2020-12-13\"\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/costo/registrar",
+					"raw": "{{url}}/costo/registrar",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"costo",
 						"registrar"
@@ -534,11 +571,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}:{{port}}/costo",
+					"raw": "{{url}}/costo",
 					"host": [
 						"{{url}}"
 					],
-					"port": "{{port}}",
 					"path": [
 						"costo"
 					]
