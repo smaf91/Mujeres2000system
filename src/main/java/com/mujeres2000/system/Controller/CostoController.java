@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "/costo")
 public class CostoController {
     @Autowired
